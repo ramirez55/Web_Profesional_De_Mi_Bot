@@ -1,0 +1,32 @@
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: #000;
+    -webkit-transition-standar: color 1s ease-in; /*Safari 5 and Chrome */
+    -moz-transition-standar: color 1s ease-in; /* firefox */
+    -o-transition-standar: color 1s ease-in; /* Opera12 */ 
+}
+
+a:hover {
+    color: rgb(0, 0, 0);
+}
+
+
+:root {
+    --body-fuente: #000000;
+    --color-fondo: #FFFFFF;
+}
+
+a {
+    background-color:var(--color-fuente);
+    color:var(--color-fondo);
+}
+
+[tema="dark"]{
+    --color-fuente: #ffffff;
+    --color-fondo: #000000;
+}
+
