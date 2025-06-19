@@ -1,3 +1,115 @@
 <!DOCTYPE html>
-<!-- OMITIDO POR LONGITUD. ES LA VERSIÓN ACTUALIZADA CON <script defer> Y window.onload -->
-<!-- Ya incluido correctamente en la actualización anterior del archivo. -->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tienda Pro - Compra tarjetas, recargas y VPN al instante. Compatible con WhatsApp. Catálogo multilingüe.">
+  <meta name="author" content="Tienda Pro">
+  <title>Tienda Pro - Catálogo Dinámico</title>
+  <link rel="icon" href="favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f9f9f9; }
+    header, footer { background-color: #111; color: white; text-align: center; padding: 20px 0; }
+    .producto img { max-width: 100%; height: auto; border-radius: 5px; }
+    .producto { border: 1px solid #ddd; padding: 15px; border-radius: 10px; background: white; text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+    .btn-primary { background-color: #007bff; border: none; }
+    .btn-primary:hover { background-color: #0056b3; }
+    .lang-selector { max-width: 200px; margin: 10px auto; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">Tienda Pro</h1>
+    <p id="subtitle">Juegos, Recargas, Tarjetas, VPN y más</p>
+    <select onchange="cambiarIdioma(this.value)" class="form-select lang-selector">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option value="pt">Português</option>
+    </select>
+  </header>
+
+  <div class="container my-5" id="catalogo">
+    <h2 class="text-center mb-4" id="catalog-title">Catálogo de Productos</h2>
+    <div class="row" id="productos"></div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Tienda Pro. Todos los derechos reservados.</p>
+  </footer>
+
+  <script defer>
+    const productos = [
+      {
+        nombre: { es: "Tarjeta PSN", en: "PSN Card", fr: "Carte PSN", pt: "Cartão PSN" },
+        precio: "USD $10 | EUR €9 | CUP $240",
+        imagen: "https://via.placeholder.com/200x150?text=PSN+Card"
+      },
+      {
+        nombre: { es: "VPN Premium", en: "Premium VPN", fr: "VPN Premium", pt: "VPN Premium" },
+        precio: "USD $5 | EUR €4.50 | CUP $120",
+        imagen: "https://via.placeholder.com/200x150?text=VPN"
+      },
+      {
+        nombre: { es: "Recarga Móvil", en: "Mobile Top-Up", fr: "Recharge Mobile", pt: "Recarga Móvel" },
+        precio: "USD $2 | EUR €1.80 | CUP $48",
+        imagen: "https://via.placeholder.com/200x150?text=Recarga"
+      },
+      {
+        nombre: { es: "Tarjeta Steam", en: "Steam Card", fr: "Carte Steam", pt: "Cartão Steam" },
+        precio: "USD $10 | EUR €9 | CUP $240",
+        imagen: "https://via.placeholder.com/200x150?text=Steam+Gift"
+      },
+      {
+        nombre: { es: "Gift Card Amazon", en: "Amazon Gift Card", fr: "Carte Cadeau Amazon", pt: "Cartão Presente Amazon" },
+        precio: "USD $25 | EUR €23 | CUP $600",
+        imagen: "https://via.placeholder.com/200x150?text=Amazon+Gift"
+      },
+      {
+        nombre: { es: "Tarjeta Google Play", en: "Google Play Card", fr: "Carte Google Play", pt: "Cartão Google Play" },
+        precio: "USD $15 | EUR €13.50 | CUP $360",
+        imagen: "https://via.placeholder.com/200x150?text=Google+Play"
+      },
+      {
+        nombre: { es: "Código Netflix", en: "Netflix Code", fr: "Code Netflix", pt: "Código Netflix" },
+        precio: "USD $10 | EUR €9 | CUP $240",
+        imagen: "https://via.placeholder.com/200x150?text=Netflix"
+      }
+    ];
+
+    const textos = {
+      es: { title: "Tienda Pro", subtitle: "Juegos, Recargas, Tarjetas, VPN y más", catalog: "Catálogo de Productos" },
+      en: { title: "Pro Shop", subtitle: "Games, Top-ups, Gift Cards, VPN & more", catalog: "Product Catalog" },
+      fr: { title: "Boutique Pro", subtitle: "Jeux, Recharges, Cartes Cadeaux, VPN et plus", catalog: "Catalogue de Produits" },
+      pt: { title: "Loja Pro", subtitle: "Jogos, Recargas, Cartões, VPN e mais", catalog: "Catálogo de Produtos" }
+    };
+
+    function cargarProductos(idioma = 'es') {
+      const contenedor = document.getElementById("productos");
+      contenedor.innerHTML = "";
+      productos.forEach(p => {
+        contenedor.innerHTML += `
+          <div class="col-md-4 mb-4">
+            <div class="producto h-100">
+              <img src="${p.imagen}" alt="${p.nombre[idioma]}">
+              <h5 class="mt-2">${p.nombre[idioma]}</h5>
+              <p>${p.precio}</p>
+              <a class="btn btn-primary mt-auto" href="https://wa.me/5354560076?text=Hola,%20quiero%20comprar%20${encodeURIComponent(p.nombre[idioma])}" target="_blank">Comprar</a>
+            </div>
+          </div>`;
+      });
+    }
+
+    function cambiarIdioma(idioma) {
+      document.getElementById("title").innerText = textos[idioma].title;
+      document.getElementById("subtitle").innerText = textos[idioma].subtitle;
+      document.getElementById("catalog-title").innerText = textos[idioma].catalog;
+      cargarProductos(idioma);
+    }
+
+    window.onload = () => cambiarIdioma('es');
+  </script>
+</body>
+</html>
